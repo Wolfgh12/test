@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>FrostLuxe Sneakers | The 2026 Archive</title>
     <script type="text/javascript" src="https://chatterpal.me/build/js/chatpal.js?8.3" integrity="sha384-+YIWcPZjPZYuhrEm13vJJg76TIO/g7y5B14VE35zhQdrojfD9dPemo7q6vnH44FR" crossorigin="anonymous" data-cfasync="false"></script>
     <script>
@@ -20,13 +20,20 @@
             --accent: #00d2ff;
             --card-bg: rgba(16, 24, 37, 0.8);
             --glass-bright: rgba(255, 255, 255, 0.1);
+            --safe-area-top: env(safe-area-inset-top);
+            --safe-area-bottom: env(safe-area-inset-bottom);
         }
 
         * { 
             margin: 0; 
             padding: 0; 
             box-sizing: border-box; 
-            scroll-behavior: smooth; 
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
         }
         
         body { 
@@ -34,7 +41,9 @@
             background: var(--dark); 
             color: var(--white); 
             overflow-x: hidden; 
-            line-height: 1.6; 
+            line-height: 1.6;
+            padding-top: var(--safe-area-top);
+            padding-bottom: var(--safe-area-bottom);
         }
 
         /* --- NAVIGATION --- */
@@ -50,53 +59,61 @@
             backdrop-filter: blur(25px); 
             background: rgba(5, 10, 16, 0.95);
             border-bottom: 2px solid var(--accent);
+            min-height: 70px;
+            padding-top: max(15px, var(--safe-area-top));
         }
 
         .logo-link { 
             display: flex; 
             align-items: center; 
             text-decoration: none; 
-            gap: 10px; 
+            gap: 12px;
+            min-width: 0;
+            flex-shrink: 0;
         }
         
         .nav-logo { 
-            height: 38px; 
+            height: 42px; 
             width: auto; 
-            object-fit: contain; 
+            object-fit: contain;
+            max-width: 100%;
         }
         
         .logo-text-stack { 
             display: flex; 
             flex-direction: column; 
-            line-height: 1.1; 
+            line-height: 1.1;
+            overflow: hidden;
         }
         
         .text-top { 
             font-family: 'Syne', sans-serif; 
-            font-size: 0.85rem; 
+            font-size: clamp(0.75rem, 3vw, 0.9rem); 
             font-weight: 800; 
             color: white; 
-            text-transform: uppercase; 
+            text-transform: uppercase;
+            white-space: nowrap;
         }
         
         .text-bottom { 
             font-family: 'Syne', sans-serif; 
-            font-size: 0.6rem; 
+            font-size: clamp(0.55rem, 2vw, 0.65rem); 
             color: var(--neon-blue); 
             text-transform: uppercase; 
-            letter-spacing: 2px; 
+            letter-spacing: 2px;
+            white-space: nowrap;
         }
 
         .nav-links { 
             display: flex; 
-            align-items: center; 
+            align-items: center;
+            gap: 10px;
         }
         
         .nav-links a { 
             color: white; 
             text-decoration: none; 
-            margin-left: 20px; 
-            font-size: 0.8rem; 
+            font-size: clamp(0.7rem, 1.5vw, 0.85rem); 
             font-weight: 800; 
             text-transform: uppercase; 
             transition: 0.3s; 
@@ -116,20 +133,24 @@
             font-size: 1.5rem; 
             cursor: pointer; 
             color: var(--accent); 
-            background: none;
-            border: none;
             padding: 5px;
+            min-width: 44px;
+            min-height: 44px;
+            align-items: center;
+            justify-content: center;
         }
 
         /* --- HERO SLIDER --- */
         .hero { 
             height: 100vh; 
             min-height: 500px; 
+            max-height: 1200px;
             position: relative; 
             overflow: hidden; 
             display: flex; 
             align-items: center; 
-            justify-content: center; 
+            justify-content: center;
+            padding-top: 70px;
         }
         
         .hero-slide { 
@@ -162,13 +183,15 @@
             text-align: center; 
             padding: 0 5%; 
             pointer-events: none; 
+            width: 100%;
         }
         
         .hero-content h1 { 
             font-family: 'Syne', sans-serif; 
             font-size: clamp(2.5rem, 15vw, 9rem); 
-            line-height: 0.95; 
-            margin-bottom: 15px; 
+            line-height: 0.9; 
+            margin-bottom: 20px;
+            word-break: break-word;
         }
         
         .hero-content p { 
@@ -176,12 +199,24 @@
             letter-spacing: clamp(3px, 2vw, 10px); 
             color: var(--neon-blue); 
             text-transform: uppercase; 
-            font-size: clamp(0.65rem, 2.5vw, 1.1rem); 
-            margin-bottom: 25px;
+            font-size: clamp(0.7rem, 3vw, 1.1rem);
+            margin-bottom: 30px;
         }
         
         .hero-content .join-btn { 
             pointer-events: auto; 
+            display: inline-block;
+            padding: clamp(12px, 3vw, 18px) clamp(25px, 5vw, 40px);
+            background: var(--white);
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 800;
+            border-radius: 50px;
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            transition: 0.3s;
+            min-height: 44px;
+            border: none;
+            cursor: pointer;
         }
 
         .slider-nav { 
@@ -198,8 +233,8 @@
         
         .nav-btn { 
             pointer-events: auto; 
-            width: 45px; 
-            height: 45px; 
+            width: 40px; 
+            height: 40px; 
             border-radius: 50%; 
             border: 1px solid var(--glass-bright); 
             background: rgba(5, 10, 16, 0.6); 
@@ -209,13 +244,15 @@
             transition: 0.3s; 
             display: flex; 
             align-items: center; 
-            justify-content: center; 
-            font-size: 1.2rem;
+            justify-content: center;
+            min-width: 44px;
+            min-height: 44px;
+            font-size: 1rem;
         }
         
         .slider-dots { 
             position: absolute; 
-            bottom: 25px; 
+            bottom: 20px; 
             left: 50%; 
             transform: translateX(-50%); 
             display: flex; 
@@ -224,113 +261,103 @@
         }
         
         .dot { 
-            width: 30px; 
-            height: 4px; 
+            width: 25px; 
+            height: 3px; 
             background: rgba(255,255,255,0.2); 
-            cursor: pointer; 
+            cursor: pointer;
             transition: 0.3s;
         }
         
         .dot.active { 
-            background: var(--neon-blue); 
+            background: var(--neon-blue);
+            width: 35px;
         }
 
         /* --- CONTENT SECTIONS --- */
         section { 
-            padding: 80px 7%; 
+            padding: clamp(40px, 10vw, 100px) 5%;
+            scroll-margin-top: 70px;
         }
         
         .stats-container { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
-            gap: 20px; 
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+            gap: 15px; 
             text-align: center; 
         }
         
         .stat-box { 
-            padding: 25px; 
+            padding: 20px; 
             background: var(--glass-bright); 
-            border-radius: 20px; 
-            border-bottom: 4px solid var(--accent); 
+            border-radius: 15px; 
+            border-bottom: 4px solid var(--accent);
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .stat-box h4 { 
             font-size: clamp(1.8rem, 5vw, 2.5rem); 
             color: var(--accent); 
-            font-family: 'Syne'; 
+            font-family: 'Syne';
+            margin-bottom: 5px;
         }
         
         .stat-box p {
-            font-size: clamp(0.85rem, 2vw, 1rem);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
         }
 
-        /* HERITAGE SECTION */
+        /* HERITAGE RESPONSIVE */
         .heritage { 
             display: flex; 
             flex-wrap: wrap; 
-            gap: 40px; 
+            gap: clamp(30px, 5vw, 60px); 
             align-items: center; 
         }
         
         .heritage-img { 
             flex: 1; 
-            min-width: 280px; 
-            max-width: 500px; 
+            min-width: 100%;
+            max-width: 100%;
         }
         
         .heritage-img img { 
             width: 100%; 
             border-radius: 20px; 
-            border: 2px solid var(--accent); 
+            border: 2px solid var(--accent);
+            aspect-ratio: 4/3;
+            object-fit: cover;
         }
         
         .heritage-content { 
             flex: 1; 
-            min-width: 280px; 
-        }
-        
-        .heritage-content h2 {
-            font-size: clamp(1.8rem, 5vw, 3rem);
-        }
-        
-        .heritage-content p {
-            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            min-width: 100%;
+            padding: clamp(20px, 4vw, 40px);
         }
 
         .customer-feature { 
             display: flex; 
             align-items: center; 
-            gap: 40px; 
+            gap: clamp(30px, 5vw, 50px); 
             flex-wrap: wrap; 
             background: rgba(255,255,255,0.03); 
             border-radius: 30px; 
-            padding: 50px; 
-            margin: 60px 0; 
+            padding: clamp(30px, 5vw, 80px); 
+            margin: clamp(40px, 8vw, 80px) 0; 
             border: 1px solid rgba(255,255,255,0.05); 
-        }
-        
-        .feature-content {
-            flex: 1;
-            min-width: 280px;
-        }
-        
-        .feature-image {
-            flex: 1;
-            min-width: 280px;
         }
         
         .feature-image img { 
             width: 100%; 
-            max-width: 400px; 
-            border-radius: 25px; 
-        }
-        
-        .feature-content p {
-            font-size: clamp(1.05rem, 3vw, 1.3rem);
+            max-width: 100%; 
+            border-radius: 20px; 
+            aspect-ratio: 1/1;
+            object-fit: cover;
         }
 
         .manifesto-section { 
-            padding: clamp(60px, 12vh, 100px) 7%; 
+            padding: clamp(40px, 10vw, 100px) 5%; 
             background: var(--dark); 
             text-align: center; 
         }
@@ -339,14 +366,14 @@
             max-width: 800px; 
             margin: 0 auto; 
             background: rgba(255, 255, 255, 0.02); 
-            padding: clamp(30px, 6vw, 60px) clamp(25px, 5vw, 40px); 
-            border-radius: clamp(25px, 5vw, 40px); 
+            padding: clamp(30px, 5vw, 60px) clamp(20px, 4vw, 40px); 
+            border-radius: 30px; 
             border: 1px solid rgba(0, 242, 255, 0.1); 
         }
         
         .manifesto-title { 
             font-family: 'Syne'; 
-            font-size: clamp(1.5rem, 5vw, 2.5rem); 
+            font-size: clamp(1.5rem, 6vw, 2.5rem); 
             margin-bottom: 20px; 
         }
         
@@ -354,22 +381,19 @@
             background: linear-gradient(90deg, #fff, var(--neon-blue)); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
-        }
-        
-        .manifesto-content p {
-            font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+            background-clip: text;
         }
 
         .anatomy-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 30px; 
-            margin-top: 50px; 
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); 
+            gap: 20px; 
+            margin-top: 40px; 
         }
         
         .anatomy-card { 
             background: var(--card-bg); 
-            padding: 35px; 
+            padding: clamp(25px, 5vw, 50px); 
             border-radius: 30px; 
             border: 1px solid rgba(255,255,255,0.1); 
             transition: 0.4s; 
@@ -378,8 +402,8 @@
         /* STORE */
         .product-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 30px; 
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); 
+            gap: 20px; 
         }
         
         .product-card { 
@@ -400,76 +424,82 @@
 
         .add-btn { 
             width: 100%; 
-            padding: 14px; 
-            border-radius: 12px; 
+            padding: 15px; 
+            border-radius: 15px; 
             border: none; 
             background: var(--white); 
             color: var(--dark); 
             font-weight: 800; 
             cursor: pointer; 
             transition: 0.4s; 
-            margin-top: 12px;
-            font-size: 0.9rem;
+            margin-top: 15px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            min-height: 44px;
         }
         
-        .add-btn:hover { 
+        .add-btn:hover,
+        .add-btn:active { 
             background: var(--neon-blue); 
             box-shadow: 0 0 15px var(--neon-blue); 
             transform: translateY(-3px); 
         }
 
         .view-all-btn { 
-            padding: 16px 45px; 
+            padding: clamp(15px, 3vw, 20px) clamp(30px, 5vw, 60px); 
             border: 2px solid var(--accent); 
             color: white; 
             text-decoration: none; 
             border-radius: 50px; 
             font-weight: 800; 
             display: inline-block; 
-            margin-top: 35px; 
-            transition: 0.3s; 
-            font-size: clamp(0.85rem, 2vw, 1rem);
+            margin-top: 40px; 
+            transition: 0.3s;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            min-height: 44px;
+            text-align: center;
         }
 
         .vip-club { 
             background: var(--aurora); 
-            padding: 60px 5%; 
+            padding: clamp(40px, 8vw, 80px) 5%; 
             border-radius: 30px; 
-            margin: 0 5%; 
+            margin: 0; 
             text-align: center; 
         }
         
         .join-btn { 
-            padding: 14px 35px; 
+            padding: clamp(12px, 3vw, 15px) clamp(25px, 5vw, 40px); 
             background: white; 
             color: black; 
             border-radius: 50px; 
             text-decoration: none; 
             font-weight: 800; 
-            display: inline-block; 
-            font-size: clamp(0.85rem, 2vw, 1rem);
-            transition: 0.3s;
+            display: inline-block;
+            min-height: 44px;
+            border: none;
+            cursor: pointer;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         /* --- FOOTER STYLING --- */
         .main-footer { 
             background: #020508; 
-            padding: 60px 7% 25px; 
+            padding: clamp(40px, 8vw, 80px) 5% 30px; 
             border-top: 1px solid rgba(0, 242, 255, 0.2); 
-            margin-top: 80px; 
+            margin-top: 60px; 
         }
         
         .footer-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-            gap: 40px; 
-            margin-bottom: 50px; 
+            gap: clamp(30px, 5vw, 50px); 
+            margin-bottom: 40px; 
             align-items: start; 
         }
         
         .footer-logo-box { 
-            width: 70px; 
-            margin-bottom: 12px; 
+            width: 60px; 
+            margin-bottom: 15px; 
         }
         
         .footer-logo-box img { 
@@ -480,15 +510,15 @@
         
         .footer-col h3.logo { 
             font-family: 'Syne'; 
-            font-size: 1.2rem; 
+            font-size: clamp(1rem, 3vw, 1.3rem); 
             color: var(--neon-blue) !important; 
-            margin-bottom: 8px; 
+            margin-bottom: 10px; 
             letter-spacing: 2px; 
         }
         
         .footer-col h4 { 
             font-family: 'Syne'; 
-            font-size: 0.85rem; 
+            font-size: clamp(0.8rem, 2vw, 0.9rem); 
             letter-spacing: 2px; 
             margin-bottom: 20px; 
             color: #00f2ff !important; 
@@ -496,9 +526,9 @@
         
         .footer-bio { 
             opacity: 0.6; 
-            font-size: 0.85rem; 
+            font-size: clamp(0.8rem, 2vw, 0.9rem); 
             line-height: 1.6; 
-            max-width: 280px; 
+            max-width: 100%; 
         }
         
         .footer-links { 
@@ -514,41 +544,37 @@
             color: white; 
             text-decoration: none; 
             opacity: 0.5; 
-            font-size: 0.85rem; 
+            font-size: clamp(0.8rem, 2vw, 0.9rem); 
             transition: 0.3s; 
-        }
-        
-        .footer-links a:hover { 
-            opacity: 1; 
-            color: #00f2ff; 
-            padding-left: 5px; 
+            display: inline-block;
+            padding: 5px 0;
         }
         
         .footer-email { 
             display: block; 
-            margin-top: 12px; 
+            margin-top: 15px; 
             color: #00f2ff !important; 
             text-decoration: none; 
             font-weight: 800; 
-            font-size: 0.85rem; 
+            font-size: clamp(0.8rem, 2vw, 0.9rem); 
         }
         
         .footer-bottom { 
             border-top: 1px solid rgba(255,255,255,0.05); 
-            padding-top: 25px; 
+            padding-top: 20px; 
             text-align: center; 
         }
         
         .footer-bottom p { 
             opacity: 0.4; 
-            font-size: 0.7rem; 
+            font-size: clamp(0.65rem, 2vw, 0.7rem); 
             letter-spacing: 1px; 
-            margin-bottom: 8px; 
+            margin-bottom: 10px; 
         }
         
         .credits { 
             opacity: 0.6 !important; 
-            font-size: 0.7rem !important; 
+            font-size: clamp(0.7rem, 2vw, 0.75rem) !important; 
             line-height: 1.5; 
         }
         
@@ -570,13 +596,14 @@
         
         .social-links { 
             display: flex; 
-            gap: 12px; 
-            margin-top: 15px; 
+            gap: 10px; 
+            margin-top: 20px; 
+            flex-wrap: wrap;
         }
         
         .social-links a { 
-            width: 32px; 
-            height: 32px; 
+            width: 35px; 
+            height: 35px; 
             border: 1px solid rgba(255,255,255,0.1); 
             display: flex; 
             align-items: center; 
@@ -584,14 +611,267 @@
             border-radius: 50%; 
             color: white; 
             text-decoration: none; 
-            font-size: 0.65rem; 
+            font-size: 0.7rem; 
             transition: 0.3s; 
+            min-width: 35px;
+            min-height: 35px;
         }
+
+        /* --- MOBILE RESPONSIVENESS --- */
         
-        .social-links a:hover { 
-            background: #00f2ff; 
-            color: black; 
-            border-color: #00f2ff; 
+        /* Large Tablets & Small Laptops */
+        @media (max-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .heritage-img img {
+                max-width: 100%;
+            }
+            
+            .customer-feature {
+                padding: 40px 30px;
+            }
+        }
+
+        /* Tablets */
+        @media (max-width: 768px) {
+            nav {
+                padding: 12px 4%;
+            }
+            
+            .menu-toggle { 
+                display: flex; 
+            }
+            
+            .nav-links { 
+                display: none; 
+                position: fixed; 
+                top: 70px; 
+                left: 0; 
+                width: 100%; 
+                height: calc(100vh - 70px);
+                background: rgba(5, 10, 16, 0.98); 
+                flex-direction: column; 
+                padding: 40px 20px; 
+                border-top: 2px solid var(--accent);
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .nav-links.active { 
+                display: flex; 
+            }
+            
+            .nav-links a { 
+                margin: 15px 0; 
+                font-size: 1.1rem; 
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+                min-height: 44px;
+            }
+            
+            .hero-content h1 {
+                font-size: clamp(2.2rem, 12vw, 4rem);
+            }
+            
+            .hero-content p {
+                font-size: clamp(0.8rem, 3vw, 1rem);
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stat-box {
+                padding: 15px;
+                min-height: 100px;
+            }
+            
+            .stat-box h4 {
+                font-size: clamp(1.5rem, 4vw, 2rem);
+            }
+            
+            .heritage, .customer-feature {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .heritage-img, .heritage-content, .feature-image, .feature-content {
+                min-width: 100%;
+                width: 100%;
+            }
+            
+            .heritage-content {
+                padding: 25px 20px;
+            }
+            
+            .customer-feature {
+                margin: 30px 0;
+                padding: 30px 20px;
+            }
+            
+            .manifesto-content {
+                padding: 30px 20px;
+            }
+            
+            .manifesto-title {
+                font-size: clamp(1.3rem, 4vw, 2rem);
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+            }
+            
+            .vip-club {
+                margin: 0;
+                border-radius: 20px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10vh auto;
+                padding: 30px 20px;
+            }
+        }
+
+        /* Mobile Phones */
+        @media (max-width: 480px) {
+            .hero {
+                min-height: 400px;
+                padding-top: 60px;
+            }
+            
+            .hero-content h1 {
+                font-size: clamp(1.8rem, 10vw, 2.5rem);
+                line-height: 1;
+            }
+            
+            .slider-dots {
+                bottom: 15px;
+            }
+            
+            .dot {
+                width: 20px;
+                height: 2px;
+            }
+            
+            .dot.active {
+                width: 25px;
+            }
+            
+            .nav-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            section {
+                padding: 30px 4%;
+            }
+            
+            .stat-box {
+                padding: 20px 15px;
+            }
+            
+            .heritage-content h2 {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+            }
+            
+            .customer-feature p {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+            
+            .anatomy-grid,
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .footer-logo-box {
+                margin: 0 auto 15px;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .footer-bio {
+                margin: 0 auto;
+            }
+            
+            .view-all-btn,
+            .join-btn,
+            .hero-content .join-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Very Small Phones */
+        @media (max-width: 360px) {
+            nav {
+                padding: 10px 3%;
+            }
+            
+            .logo-link {
+                gap: 8px;
+            }
+            
+            .nav-logo {
+                height: 35px;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.6rem;
+            }
+            
+            .hero-content p {
+                font-size: 0.75rem;
+                letter-spacing: 2px;
+            }
+            
+            .stat-box h4 {
+                font-size: 1.3rem;
+            }
+            
+            .add-btn,
+            .view-all-btn,
+            .join-btn {
+                font-size: 0.85rem;
+                padding: 12px 20px;
+            }
+        }
+
+        /* Landscape Mode */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero {
+                min-height: 400px;
+                height: auto;
+                padding: 100px 0 60px;
+            }
+            
+            .hero-content h1 {
+                font-size: clamp(2rem, 10vw, 3rem);
+            }
+            
+            .nav-links {
+                height: calc(100vh - 70px);
+                overflow-y: auto;
+            }
         }
 
         /* --- MODAL --- */
@@ -603,19 +883,23 @@
             top: 0; 
             width: 100%; 
             height: 100%; 
-            background: rgba(5, 10, 16, 0.9); 
+            background: rgba(5, 10, 16, 0.95); 
             backdrop-filter: blur(8px); 
+            -webkit-backdrop-filter: blur(8px);
+            overflow-y: auto;
+            padding: 20px;
+            padding-top: max(20px, var(--safe-area-top));
         }
         
         .modal-content { 
             position: relative; 
             background: #050a10; 
             margin: 15vh auto; 
-            padding: 35px 25px; 
+            padding: 40px; 
             border: 1px solid var(--neon-blue); 
             width: 90%; 
             max-width: 450px; 
-            border-radius: 25px; 
+            border-radius: 20px; 
             text-align: center; 
             box-shadow: 0 0 50px rgba(0, 242, 255, 0.2); 
             animation: modalSlide 0.4s ease-out; 
@@ -628,345 +912,44 @@
         
         .close-modal { 
             position: absolute; 
-            right: 18px; 
-            top: 12px; 
+            right: 15px; 
+            top: 10px; 
             color: white; 
-            font-size: 26px; 
+            font-size: 28px; 
             font-weight: bold; 
             cursor: pointer; 
+            padding: 10px;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        .close-modal:hover { 
+        .close-modal:hover,
+        .close-modal:active { 
             color: var(--neon-blue); 
         }
-
-        /* --- MOBILE RESPONSIVENESS --- */
         
-        /* Tablets and smaller desktops */
-        @media (max-width: 992px) {
-            nav {
-                padding: 12px 4%;
-            }
-            
-            .menu-toggle { 
-                display: block; 
-            }
-            
-            .nav-links { 
-                display: none; 
-                position: absolute; 
-                top: 100%; 
-                left: 0; 
-                width: 100%; 
-                background: rgba(5, 10, 16, 0.98); 
-                flex-direction: column; 
-                padding: 30px 0; 
-                border-bottom: 2px solid var(--accent);
-            }
-            
-            .nav-links.active { 
-                display: flex; 
-            }
-            
-            .nav-links a { 
-                margin: 12px 0; 
-                font-size: 1.1rem; 
-                margin-left: 0; 
-                text-align: center; 
-            }
-            
-            section { 
-                padding: 60px 5%; 
-            }
-            
-            .stats-container { 
-                grid-template-columns: repeat(2, 1fr); 
-            }
-            
-            .heritage { 
-                flex-direction: column-reverse; 
-                text-align: center; 
-            }
-            
-            .heritage-img { 
-                max-width: 100%; 
-                min-width: auto; 
-            }
-            
-            .heritage-content { 
-                min-width: auto; 
-            }
-            
-            .customer-feature { 
-                padding: 35px 20px; 
-                border-radius: 25px; 
-                gap: 30px;
-            }
-            
-            .feature-image img { 
-                max-width: 100%; 
-            }
-            
-            .anatomy-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-            
-            .product-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-        }
-
-        /* Mobile phones */
-        @media (max-width: 768px) {
-            .nav-logo {
-                height: 35px;
-            }
-            
-            .text-top {
-                font-size: 0.8rem;
-            }
-            
-            .text-bottom {
-                font-size: 0.55rem;
-            }
-            
-            .hero {
-                min-height: 450px;
-            }
-            
-            .hero-content h1 {
-                font-size: clamp(2.2rem, 12vw, 4rem);
-                line-height: 1;
-                margin-bottom: 12px;
-            }
-            
-            .hero-content p {
-                font-size: clamp(0.6rem, 2vw, 0.85rem);
-                letter-spacing: 3px;
-                margin-bottom: 20px;
-            }
-            
-            .join-btn {
-                padding: 12px 28px;
-                font-size: 0.8rem;
-            }
-            
-            .nav-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-            
-            .slider-dots {
-                bottom: 20px;
-            }
-            
-            .dot {
-                width: 25px;
-                height: 3px;
-            }
-            
-            section {
-                padding: 50px 4%;
-            }
-            
-            .stats-container {
-                gap: 15px;
-            }
-            
-            .stat-box {
-                padding: 20px 15px;
-            }
-            
-            .stat-box h4 {
-                font-size: 1.8rem;
-            }
-            
-            .stat-box p {
-                font-size: 0.8rem;
-            }
-            
-            .heritage, 
-            .customer-feature {
-                flex-direction: column !important;
-                padding: 30px 18px !important;
-                gap: 25px !important;
-            }
-            
-            .heritage-img, 
-            .heritage-content, 
-            .feature-content, 
-            .feature-image {
-                width: 100% !important;
-                min-width: 100% !important;
-                flex: none !important;
-            }
-            
-            .heritage-img img {
-                border-radius: 15px;
-            }
-            
-            .heritage-content {
-                padding: 25px !important;
-                border-radius: 20px !important;
-            }
-            
-            .heritage-content h2 {
-                font-size: 1.5rem;
-                margin-bottom: 18px;
-            }
-            
-            .heritage-content p {
-                font-size: 0.95rem;
-                line-height: 1.7;
-            }
-            
-            .customer-feature {
-                margin: 40px 0;
-            }
-            
-            .feature-content p {
-                font-size: 1.05rem;
-                line-height: 1.7;
-            }
-            
-            .feature-image img {
-                border-radius: 20px;
-            }
-            
-            .manifesto-section {
-                padding: 50px 4%;
-            }
-            
-            .manifesto-content {
-                padding: 28px 20px;
-                border-radius: 20px;
-            }
-            
-            .manifesto-title {
-                font-size: 1.3rem;
-                margin-bottom: 15px;
-            }
-            
-            .manifesto-content p {
-                font-size: 0.9rem;
-                line-height: 1.7;
-            }
-            
-            .anatomy-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-                margin-top: 40px;
-            }
-            
-            .anatomy-card {
-                padding: 28px;
-                border-radius: 25px;
-            }
-            
-            .product-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-            
-            .product-card {
-                padding: 18px;
-                border-radius: 25px;
-            }
-            
-            .product-card img {
-                border-radius: 18px;
-            }
-            
-            .add-btn {
-                padding: 12px;
-                font-size: 0.85rem;
-            }
-            
-            .view-all-btn {
-                padding: 14px 35px;
-                font-size: 0.85rem;
-            }
-            
-            .vip-club {
-                padding: 45px 4%;
-                border-radius: 25px;
-                margin: 0 4%;
-            }
-            
-            .vip-club h2 {
-                font-size: 1.5rem;
-                margin-bottom: 15px;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 35px;
-                text-align: center;
-            }
-            
-            .footer-logo-box {
-                margin: 0 auto 12px;
-            }
-            
-            .social-links {
-                justify-content: center;
-                margin: 15px auto 0;
-            }
-            
-            .footer-bio {
-                margin: 0 auto;
-                max-width: 100%;
-            }
-            
-            .footer-col p {
-                font-size: 0.85rem;
-            }
-            
-            .modal-content {
-                width: 92%;
-                padding: 30px 20px;
-                margin: 20vh auto;
-            }
-            
-            .modal-content h2 {
-                font-size: 1.5rem;
-            }
-            
-            .modal-content p {
-                font-size: 0.85rem;
-            }
-        }
-
-        /* Very small phones */
-        @media (max-width: 480px) {
-            .hero {
-                min-height: 400px;
-            }
-            
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-            
-            .stats-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-bottom p,
-            .credits {
-                font-size: 0.65rem;
-            }
+        /* Touch-friendly form inputs */
+        input, button, textarea, select {
+            font-size: 16px; /* Prevents iOS zoom on focus */
         }
         
-        /* Landscape phones */
-        @media (max-width: 768px) and (orientation: landscape) {
-            .hero {
-                min-height: 100vh;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
+        /* Improve touch targets */
+        a, button, .nav-btn, .dot, .close-modal {
+            touch-action: manipulation;
+        }
+        
+        /* Prevent text overflow */
+        h1, h2, h3, h4, p {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+        
+        /* Smooth scrolling for iOS */
+        .nav-links, .modal-overlay {
+            -webkit-overflow-scrolling: touch;
         }
     </style>
 </head>
@@ -980,7 +963,7 @@
                 <span class="text-bottom">Sneakers</span>
             </div>
         </a>
-        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu">☰</button>
+        <div class="menu-toggle" id="mobile-menu" aria-label="Toggle menu">☰</div>
         <div class="nav-links" id="nav-menu">
             <a href="index.html" class="active-link">Home</a>
             <a href="index.html#store">Collection</a>
@@ -1005,7 +988,9 @@
             <button class="nav-btn next" aria-label="Next slide">❯</button>
         </div>
         <div class="slider-dots">
-            <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+            <span class="dot active" aria-label="Slide 1"></span>
+            <span class="dot" aria-label="Slide 2"></span>
+            <span class="dot" aria-label="Slide 3"></span>
         </div>
     </section>
 
@@ -1018,114 +1003,112 @@
         </div>
     </section>
 
-    <section class="heritage" id="story" style="display: flex; align-items: center; gap: 60px; padding: 100px 7%; background: rgba(0, 242, 255, 0.02); border-top: 1px solid rgba(0, 242, 255, 0.1); border-bottom: 1px solid rgba(0, 242, 255, 0.1);">
-        <div class="heritage-img" style="flex: 1; position: relative;">
-            <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=800" alt="Premium Sneakers" style="width: 100%; border-radius: 20px; filter: grayscale(30%) contrast(110%); box-shadow: 20px 20px 0px var(--neon-blue);">
+    <section class="heritage" id="story">
+        <div class="heritage-img">
+            <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=800" alt="FrostLuxe Heritage">
         </div>
-        <div class="heritage-content" style="flex: 1; padding: 40px; background: rgba(255, 255, 255, 0.03); border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);">
-            <h2 style="font-family: 'Syne'; font-size: 3rem; margin-bottom: 25px; line-height: 1; text-transform: uppercase; letter-spacing: -1px;">The Accra <span style="color: var(--neon-blue);">Arrival</span></h2>
-            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--white); font-weight: 300; margin-bottom: 20px;">
+        <div class="heritage-content">
+            <h2>The Accra <span style="color: var(--neon-blue);">Arrival</span></h2>
+            <p>
                 FrostLuxe sets a new standard in curation for the streets of Accra. We don't just move footwear; we manage an archive of high-heat culture. In a market flooded with the ordinary, we serve as the gatekeepers for the authentic, the limited, and the legendary.
             </p>
-            <p style="font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.7); border-left: 3px solid var(--neon-blue); padding-left: 20px; font-style: italic;">
-                Our journey began with a simple mission: to eliminate the compromise between local accessibility and global standards. Every silhouette in our vault undergoes a rigorous multi-point verification protocol. From the vibrant energy of Osu to the high-end corridors of East Legon, FrostLuxe is the pulse of Ghana's sneaker renaissance. We bridge the gap between global drops and local legends, delivering 100% verified heat directly to your rotation. The vault is now open for those who refuse to blend in. Stay iced out, always.
+            <p style="border-left: 3px solid var(--neon-blue); padding-left: 20px; font-style: italic;">
+                Our journey began with a simple mission: to eliminate the compromise between local accessibility and global standards. Every silhouette in our vault undergoes a rigorous multi-point verification protocol. From the vibrant energy of Osu to the high-end corridors of East Legon, FrostLuxe is the pulse of Ghana's sneaker renaissance.
             </p>
         </div>
     </section>
 
     <section class="street-style-archive">
-        <h2 style="font-family: 'Syne'; text-align: center; font-size: clamp(1.8rem, 5vw, 3rem); margin-bottom: 60px; letter-spacing: 5px;">WHAT THE STREET SAYS</h2>
+        <h2>WHAT THE STREET SAYS</h2>
 
-        <div class="customer-feature" style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap; margin-bottom: 100px;">
-            <div class="feature-content" style="flex: 1; min-width: 300px;">
-                <p style="font-size: 1.3rem; line-height: 1.8; opacity: 0.9;">
+        <div class="customer-feature">
+            <div class="feature-content">
+                <p>
                     "The level of curation here is insane. These 
-                    <span style="color: var(--neon-blue); text-shadow: 0 0 15px var(--neon-blue); font-weight: 800;">
+                    <span style="color: var(--neon-blue); font-weight: 800;">
                         ADIDAS GAZELLE
                     </span> 
                     are the perfect addition to my daily rotation."
                 </p>
-                <p style="font-weight: 800; color: var(--neon-blue); margin-top: 40px;">— Kwame A., ACCRA</p>
+                <p style="font-weight: 800; color: var(--neon-blue); margin-top: 20px;">— Kwame A., ACCRA</p>
             </div>
-            <div class="feature-image" style="flex: 1; min-width: 300px;">
-                <img src="images/kw1.jpg" alt="Adidas Gazelle" style="width: 100%; border-radius: 30px; border: 2px solid var(--neon-blue); box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);">
+            <div class="feature-image">
+                <img src="images/kw1.jpg" alt="Adidas Gazelle">
             </div>
         </div>
 
-        <div class="customer-feature" style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap-reverse; margin-bottom: 100px;">
-            <div class="feature-image" style="flex: 1; min-width: 300px;">
-                <img src="images/Gemini_Generated_Image_uxwbq3uxwbq3uxwb.png" alt="Jordan 4 Seafoam" style="width: 100%; border-radius: 30px; border: 2px solid var(--neon-blue); box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);">
+        <div class="customer-feature">
+            <div class="feature-image">
+                <img src="images/Gemini_Generated_Image_uxwbq3uxwbq3uxwb.png" alt="Jordan 4 Seafoam">
             </div>
-            <div class="feature-content" style="flex: 1; min-width: 300px;">
-                <p style="font-size: 1.3rem; line-height: 1.8; opacity: 0.9;">
+            <div class="feature-content">
+                <p>
                     "Finding authentic 
-                    <span style="color: var(--neon-blue); text-shadow: 0 0 15px var(--neon-blue); font-weight: 800;">
+                    <span style="color: var(--neon-blue); font-weight: 800;">
                         JORDAN 4 SEAFOAM
                     </span> 
                     in Ghana used to be a mission. FrostLuxe made it seamless."
                 </p>
-                <p style="font-weight: 800; color: var(--neon-blue); margin-top: 40px;">— Kwaku K., EAST LEGON</p>
+                <p style="font-weight: 800; color: var(--neon-blue); margin-top: 20px;">— Kwaku K., EAST LEGON</p>
             </div>
         </div>
 
-        <div class="customer-feature" style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap;">
-            <div class="feature-content" style="flex: 1; min-width: 300px;">
-                <p style="font-size: 1.3rem; line-height: 1.8; opacity: 0.9;">
+        <div class="customer-feature">
+            <div class="feature-content">
+                <p>
                     "The 2026 Archive is ahead of its time. My 
-                    <span style="color: var(--neon-blue); text-shadow: 0 0 15px var(--neon-blue); font-weight: 800;">
+                    <span style="color: var(--neon-blue); font-weight: 800;">
                         YEEZY BOOST 350
                     </span> 
                     arrived in mint condition. 100% verified."
                 </p>
-                <p style="font-weight: 800; color: var(--neon-blue); margin-top: 40px;">— Kofi E., TEMA</p>
+                <p style="font-weight: 800; color: var(--neon-blue); margin-top: 20px;">— Kofi E., TEMA</p>
             </div>
-            <div class="feature-image" style="flex: 1; min-width: 300px;">
-                <img src="images/Gemini_Generated_Image_3esj7u3esj7u3esj.png" alt="Yeezy Boost" style="width: 100%; border-radius: 30px; border: 2px solid var(--neon-blue); box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);">
+            <div class="feature-image">
+                <img src="images/Gemini_Generated_Image_3esj7u3esj7u3esj.png" alt="Yeezy Boost">
             </div>
         </div>
     </section>
 
-    <section class="manifesto-section" style="padding: clamp(60px, 15vh, 120px) 5%; background: radial-gradient(circle at center, rgba(0, 242, 255, 0.08) 0%, transparent 70%); text-align: center;">
-        <div class="manifesto-content" style="max-width: 900px; margin: 0 auto; padding: clamp(30px, 8vw, 60px); border-radius: clamp(20px, 5vw, 40px); background: rgba(5, 10, 16, 0.6); border: 1px solid rgba(0, 242, 255, 0.15); backdrop-filter: blur(20px); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: -50px; left: -50px; width: 100px; height: 100px; background: var(--neon-blue); filter: blur(80px); opacity: 0.3;"></div>
-            <h2 class="manifesto-title" style="font-family: 'Syne'; font-size: clamp(1.8rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 25px; letter-spacing: -1px; text-transform: uppercase;">
-                THE POWER OF <span class="gradient-text" style="background: linear-gradient(90deg, #00f2ff, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px rgba(0, 242, 255, 0.3);">AUTHENTICITY</span>
+    <section class="manifesto-section">
+        <div class="manifesto-content">
+            <h2 class="manifesto-title">
+                THE POWER OF <span class="gradient-text">AUTHENTICITY</span>
             </h2>
-            <p style="font-family: 'Plus Jakarta Sans'; font-size: clamp(1.1rem, 3vw, 1.4rem); color: var(--white); font-weight: 500; margin-bottom: 20px; letter-spacing: 0.5px; line-height: 1.4;">
+            <p>
                 Wearing something authentic brings a special kind of confidence.
             </p>
-            <p style="font-size: clamp(0.9rem, 2.5vw, 1.05rem); line-height: 1.8; color: rgba(255,255,255,0.6); font-weight: 300; max-width: 750px; margin: 0 auto;">
-                It is the unspoken language of the streets—a silent bond between those who respect the craft. Authenticity isn't just about the stitching or the smell of premium leather; it's the peace of mind that comes from knowing you are holding a piece of history. In a world of replicas, standing in the real thing alters your posture and sharpens your presence. At FrostLuxe, we protect that feeling. Every pair is a promise kept, ensuring your legacy is built on a foundation of pure, uncompromised heat.
+            <p>
+                It is the unspoken language of the streets—a silent bond between those who respect the craft. Authenticity isn't just about the stitching or the smell of premium leather; it's the peace of mind that comes from knowing you are holding a piece of history.
             </p>
-            <div style="margin-top: 30px; height: 2px; width: 40px; background: var(--neon-blue); margin-left: auto; margin-right: auto; opacity: 0.5;"></div>
         </div>
     </section>
 
     <section class="anatomy" id="anatomy">
-        <h2 style="text-align: center; font-family: 'Syne'; font-size: clamp(1.8rem, 5vw, 2.5rem); margin-bottom: 30px;">TECHNICAL ANATOMY</h2>
+        <h2 style="text-align: center; font-family: 'Syne'; font-size: clamp(1.8rem, 4vw, 2.5rem);">TECHNICAL ANATOMY</h2>
         <div class="anatomy-grid" id="anatomy-injector"></div>
     </section>
 
-    <section class="store" id="store" style="text-align: center;">
-        <h2 style="font-family: 'Syne'; margin-bottom: 40px; font-size: clamp(1.8rem, 5vw, 2.5rem);">LATEST DROPS</h2>
+    <section class="store" id="store">
+        <h2 style="font-family: 'Syne'; margin-bottom: 40px; font-size: clamp(1.8rem, 4vw, 2.5rem);">LATEST DROPS</h2>
         <div class="product-grid" id="product-injector"></div>
         <a href="products.html" class="view-all-btn">VIEW FULL COLLECTION</a>
     </section>
 
-    <section class="vip-club" style="text-align: center; padding: 80px 5%;">
+    <section class="vip-club">
         <h2 style="font-family: 'Syne'; font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 20px;">JOIN THE FROST-VIP CLUB</h2>
-        <a href="javascript:void(0)" class="join-btn" id="openModal" style="display: inline-block; padding: 15px 40px; background: var(--neon-blue); color: var(--dark); text-decoration: none; font-weight: 800; border-radius: 50px; transition: 0.4s;">SUBSCRIBE NOW</a>
+        <a href="javascript:void(0)" class="join-btn" id="openModal">SUBSCRIBE NOW</a>
     </section>
 
     <div id="vipModal" class="modal-overlay">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <span class="close-modal" aria-label="Close modal">&times;</span>
             <h2 style="font-family: 'Syne'; color: var(--neon-blue); margin-bottom: 10px;">EXCLUSIVES ONLY</h2>
             <p style="opacity: 0.8; margin-bottom: 25px; font-size: 0.9rem;">Join the archive. Get notified on secret drops and VIP-only price cuts.</p>
             <form id="vip-form">
                 <input type="email" placeholder="ENTER YOUR EMAIL" required 
-                    style="width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--neon-blue); border-radius: 10px; color: white; margin-bottom: 15px; font-family: inherit; font-size: 0.9rem;">
-                <button type="submit" class="submit-btn" style="width: 100%; background: var(--neon-blue); color: var(--dark); border: none; padding: 15px; border-radius: 10px; font-weight: 800; cursor: pointer; text-transform: uppercase; font-size: 0.9rem;">Secure My Spot</button>
+                    style="width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--neon-blue); border-radius: 10px; color: white; margin-bottom: 15px; font-family: inherit; font-size: 16px;">
+                <button type="submit" class="submit-btn" style="width: 100%; background: var(--neon-blue); color: var(--dark); border: none; padding: 15px; border-radius: 10px; font-weight: 800; cursor: pointer; text-transform: uppercase; min-height: 44px;">Secure My Spot</button>
             </form>
             <div id="modal-success" style="display:none; margin-top: 15px; color: var(--neon-blue); font-weight: 800;">Welcome to the inner circle. ❄️</div>
         </div>
@@ -1137,7 +1120,11 @@
                 <div class="footer-logo-box"><img src="images/logo.jpeg" alt="FROSTLUXE"></div>
                 <h3 class="logo">FROSTLUXE</h3>
                 <p class="footer-bio">From the vault to the Accra streets. Premium kicks for those who know what it means to stay iced out. The future of Ghana's sneaker culture is here.</p>
-                <div class="social-links"><a href="#">IG</a><a href="#">TW</a><a href="#">FB</a></div>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="Twitter">TW</a>
+                    <a href="#" aria-label="Facebook">FB</a>
+                </div>
             </div>
             <div class="footer-col">
                 <h4>EXPLORE</h4>
@@ -1160,7 +1147,7 @@
                 <h4>ACCRA HUB</h4>
                 <p>Adenta, Accra - Ghana</p>
                 <p>Mon - Fri: 8:30am to 5:00pm</p>
-                <a href="/cdn-cgi/l/email-protection#6402160b171008111c015d240309050d084a070b09" class="footer-email"><span class="__cf_email__" data-cfemail="6a0c1805191e061f120f532a0d070b030644090507">[email&#160;protected]</span></a>
+                <a href="mailto:frostluxe9@gmail.com" class="footer-email">frostluxe9@gmail.com</a>
             </div>
         </div>
         
@@ -1174,32 +1161,95 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="global-cart.js"></script>
+    <script src="global-cart.js"></script>
     <script src="index.js"></script>
     <script>
+        // Mobile menu toggle
         const menuBtn = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-menu');
         
-        menuBtn.onclick = () => {
-            navLinks.classList.toggle('active');
-        };
-        
-        // Close mobile menu when clicking on a link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 992) {
+        if (menuBtn && navLinks) {
+            menuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuBtn.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+            });
+            
+            // Close menu when clicking on a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
                     navLinks.classList.remove('active');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (event) => {
+                if (!navLinks.contains(event.target) && !menuBtn.contains(event.target) && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuBtn.setAttribute('aria-expanded', 'false');
                 }
             });
-        });
+        }
 
         // Modal Logic
         const modal = document.getElementById('vipModal');
         const openBtn = document.getElementById('openModal');
         const closeBtn = document.querySelector('.close-modal');
         
-        if(openBtn) { 
-            openBtn.onclick = () => modal.style.display = 'block'; 
+        if (openBtn) {
+            openBtn.addEventListener('click', () => {
+                if (modal) modal.style.display = 'block';
+            });
         }
         
-        if(clos
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                if (modal) modal.style.display = 'none';
+            });
+        }
+        
+        if (modal) {
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && modal.style.display === 'block') {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+
+        // Touch-friendly slider dots
+        document.querySelectorAll('.dot').forEach(dot => {
+            dot.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                dot.click();
+            });
+        });
+
+        // Prevent zoom on double-tap (iOS)
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (event) => {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // Handle iOS safe areas
+        function updateSafeArea() {
+            document.documentElement.style.setProperty('--safe-area-top', 'env(safe-area-inset-top, 0px)');
+            document.documentElement.style.setProperty('--safe-area-bottom', 'env(safe-area-inset-bottom, 0px)');
+        }
+        
+        updateSafeArea();
+        window.addEventListener('resize', updateSafeArea);
+        window.addEventListener('orientationchange', updateSafeArea);
+    </script>
+</body>
+</html>
