@@ -160,6 +160,25 @@
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
+        @media (max-width: 768px) {
+            /* Force images and text boxes to stack properly on phones */
+            .heritage, .customer-feature {
+                flex-direction: column !important;
+                padding: 40px 20px !important;
+                gap: 30px !important;
+            }
+            .heritage-img, .heritage-content, .feature-content, .feature-image {
+                width: 100% !important;
+                min-width: 100% !important;
+                flex: none !important;
+            }
+            /* Prevent text overlap in hero */
+            .hero-content h1 {
+                font-size: 4rem;
+                line-height: 1.1;
+            }
+        }
+
         @media (max-width: 600px) {
             .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
             .footer-logo-box, .social-links { margin: 0 auto 20px; justify-content: center; }
@@ -172,32 +191,6 @@
         @keyframes modalSlide { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .close-modal { position: absolute; right: 20px; top: 15px; color: white; font-size: 28px; font-weight: bold; cursor: pointer; }
         .close-modal:hover { color: var(--neon-blue); }
-
-        @media (max-width: 768px) {
-    /* Force sections to stack and clear padding issues */
-    .heritage, .customer-feature {
-        flex-direction: column !important;
-        padding: 40px 15px !important;
-    }
-
-    .heritage-img, .heritage-content, .feature-content, .feature-image {
-        flex: none !important;
-        width: 100% !important;
-        min-width: 100% !important;
-    }
-
-    /* Fix the GHANA 2026 text overlap */
-    .hero-content h1 {
-        font-size: 3.5rem;
-        line-height: 1;
-    }
-
-    /* Ensure images don't cause horizontal scroll */
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-}
     </style>
 </head>
 <body>
