@@ -88,16 +88,35 @@
         .feature-image img { width: 100%; max-width: 400px; border-radius: 30px; }
 
         .manifesto-section { padding: 100px 10%; background: var(--dark); text-align: center; }
-        .manifesto-content { max-width: 800px; margin: 0 auto; background: rgba(255, 255, 255, 0.02); padding: 60px 40px; border-radius: 40px; border: 1px solid rgba(0, 242, 255, 0.1); }
+        .manifesto-content { max-width: 800px; margin: 0 auto; background: rgba(255, 255, 255, 0.02); padding: 60px 40px; border-radius: 40px; border: 1px solid rgba(0, 242, 255, 0.1); overflow: hidden; word-wrap: break-word; }
         .manifesto-title { font-family: 'Syne'; font-size: clamp(1.5rem, 4vw, 2.5rem); margin-bottom: 30px; }
         .gradient-text { background: linear-gradient(90deg, #fff, var(--neon-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         .anatomy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; }
-        .anatomy-card { background: var(--card-bg); padding: 50px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; }
+        .anatomy-card { background: var(--card-bg); padding: 50px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; word-wrap: break-word; }
 
-        /* STORE */
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; }
-        .product-card { background: var(--card-bg); border-radius: 40px; padding: 25px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        /* --- HORIZONTAL SCROLL STORE --- */
+        .store { overflow: hidden; }
+        .product-grid { 
+            display: flex; 
+            overflow-x: auto; 
+            gap: 30px; 
+            padding: 20px 0; 
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* Firefox */
+        }
+        .product-grid::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+        
+        .product-card { 
+            flex: 0 0 300px; /* Fixed width for horizontal scroll */
+            scroll-snap-align: start;
+            background: var(--card-bg); 
+            border-radius: 40px; 
+            padding: 25px; 
+            border: 1px solid rgba(255,255,255,0.05); 
+            text-align: center; 
+            word-wrap: break-word;
+        }
         .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 30px; margin-bottom: 20px; }
 
         .add-btn { 
@@ -161,7 +180,6 @@
         }
 
         @media (max-width: 768px) {
-            /* Force images and text boxes to stack properly on phones */
             .heritage, .customer-feature {
                 flex-direction: column !important;
                 padding: 40px 20px !important;
@@ -172,11 +190,11 @@
                 min-width: 100% !important;
                 flex: none !important;
             }
-            /* Prevent text overlap in hero */
             .hero-content h1 {
                 font-size: 4rem;
                 line-height: 1.1;
             }
+            .product-card { flex: 0 0 260px; } /* Slightly smaller on mobile */
         }
 
         @media (max-width: 600px) {
