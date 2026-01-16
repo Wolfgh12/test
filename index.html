@@ -194,7 +194,7 @@
                 font-size: 4rem;
                 line-height: 1.1;
             }
-            .product-card { flex: 0 0 260px; } /* Slightly smaller on mobile */
+            .product-card { flex: 0 0 260px; }
         }
 
         @media (max-width: 600px) {
@@ -239,7 +239,7 @@
         <div class="hero-content">
             <p class="glow-text">The Apex of Footwear</p>
             <h1 id="hero-title">GHANA<br>2026</h1>
-            <a href="#store" class="join-btn">EXPLORE LATEST DROPS</a>
+            <a href="#store" class="join-btn" style="padding: 15px 40px; background: white; color: black; border-radius: 50px; text-decoration: none; font-weight: 800; display: inline-block;">EXPLORE LATEST DROPS</a>
         </div>
         <div class="slider-nav">
             <button class="nav-btn prev">❮</button>
@@ -269,7 +269,7 @@
                 FrostLuxe sets a new standard in curation for the streets of Accra. We don’t just move footwear; we manage an archive of high-heat culture. In a market flooded with the ordinary, we serve as the gatekeepers for the authentic, the limited, and the legendary.
             </p>
             <p style="font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.7); border-left: 3px solid var(--neon-blue); padding-left: 20px; font-style: italic;">
-                Our journey began with a simple mission: to eliminate the compromise between local accessibility and global standards. Every silhouette in our vault undergoes a rigorous multi-point verification protocol. From the vibrant energy of Osu to the high-end corridors of East Legon, FrostLuxe is the pulse of Ghana’s sneaker renaissance. We bridge the gap between global drops and local legends, delivering 100% verified heat directly to your rotation. The vault is now open for those who refuse to blend in. Stay iced out, always.
+                Our journey began with a simple mission: to eliminate the compromise between local accessibility and global standards. Every silhouette in our vault undergoes a rigorous multi-point verification protocol. From the vibrant energy of Osu to the high-end corridors of East Legon, FrostLuxe is the pulse of Ghana’s sneaker renaissance.
             </p>
         </div>
     </section>
@@ -277,8 +277,8 @@
     <section class="street-style-archive">
         <h2 style="font-family: 'Syne'; text-align: center; font-size: 3rem; margin-bottom: 60px; letter-spacing: 5px;">WHAT THE STREET SAYS</h2>
 
-        <div class="customer-feature" style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap; margin-bottom: 100px;">
-            <div class="feature-content" style="flex: 1; min-width: 300px;">
+        <div class="customer-feature">
+            <div class="feature-content">
                 <p style="font-size: 1.3rem; line-height: 1.8; opacity: 0.9;">
                     "The level of curation here is insane. These 
                     <span style="color: var(--neon-blue); text-shadow: 0 0 15px var(--neon-blue); font-weight: 800;">
@@ -288,16 +288,16 @@
                 </p>
                 <p style="font-weight: 800; color: var(--neon-blue); margin-top: 40px;">— Kwame A., ACCRA</p>
             </div>
-            <div class="feature-image" style="flex: 1; min-width: 300px;">
+            <div class="feature-image">
                 <img src="images/kw1.jpg" alt="Adidas Gazelle" style="width: 100%; border-radius: 30px; border: 2px solid var(--neon-blue); box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);">
             </div>
         </div>
 
-        <div class="customer-feature" style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap-reverse; margin-bottom: 100px;">
-            <div class="feature-image" style="flex: 1; min-width: 300px;">
+        <div class="customer-feature" style="flex-wrap: wrap-reverse;">
+            <div class="feature-image">
                 <img src="images/Gemini_Generated_Image_uxwbq3uxwbq3uxwb.png" alt="Jordan 4 Seafoam" style="width: 100%; border-radius: 30px; border: 2px solid var(--neon-blue); box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);">
             </div>
-            <div class="feature-content" style="flex: 1; min-width: 300px;">
+            <div class="feature-content">
                 <p style="font-size: 1.3rem; line-height: 1.8; opacity: 0.9;">
                     "Finding authentic 
                     <span style="color: var(--neon-blue); text-shadow: 0 0 15px var(--neon-blue); font-weight: 800;">
@@ -308,37 +308,19 @@
                 <p style="font-weight: 800; color: var(--neon-blue); margin-top: 40px;">— Kwaku K., EAST LEGON</p>
             </div>
         </div>
-
-        <div class="customer-feature" style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap;">
-            <div class="feature-content" style="flex: 1; min-width: 300px;">
-                <p style="font-size: 1.3rem; line-height: 1.8; opacity: 0.9;">
-                    "The 2026 Archive is ahead of its time. My 
-                    <span style="color: var(--neon-blue); text-shadow: 0 0 15px var(--neon-blue); font-weight: 800;">
-                        YEEZY BOOST 350
-                    </span> 
-                    arrived in mint condition. 100% verified."
-                </p>
-                <p style="font-weight: 800; color: var(--neon-blue); margin-top: 40px;">— Kofi E., TEMA</p>
-            </div>
-            <div class="feature-image" style="flex: 1; min-width: 300px;">
-                <img src="images/Gemini_Generated_Image_3esj7u3esj7u3esj.png" alt="Yeezy Boost" style="width: 100%; border-radius: 30px; border: 2px solid var(--neon-blue); box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);">
-            </div>
-        </div>
     </section>
 
-    <section class="manifesto-section" style="padding: clamp(60px, 15vh, 120px) 5%; background: radial-gradient(circle at center, rgba(0, 242, 255, 0.08) 0%, transparent 70%); text-align: center;">
-        <div class="manifesto-content" style="max-width: 900px; margin: 0 auto; padding: clamp(30px, 8vw, 60px); border-radius: clamp(20px, 5vw, 40px); background: rgba(5, 10, 16, 0.6); border: 1px solid rgba(0, 242, 255, 0.15); backdrop-filter: blur(20px); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: -50px; left: -50px; width: 100px; height: 100px; background: var(--neon-blue); filter: blur(80px); opacity: 0.3;"></div>
-            <h2 class="manifesto-title" style="font-family: 'Syne'; font-size: clamp(1.8rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 25px; letter-spacing: -1px; text-transform: uppercase;">
-                THE POWER OF <span class="gradient-text" style="background: linear-gradient(90deg, #00f2ff, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px rgba(0, 242, 255, 0.3);">AUTHENTICITY</span>
+    <section class="manifesto-section">
+        <div class="manifesto-content">
+            <h2 class="manifesto-title">
+                THE POWER OF <span class="gradient-text">AUTHENTICITY</span>
             </h2>
-            <p style="font-family: 'Plus Jakarta Sans'; font-size: clamp(1.1rem, 3vw, 1.4rem); color: var(--white); font-weight: 500; margin-bottom: 20px; letter-spacing: 0.5px; line-height: 1.4;">
+            <p style="font-size: 1.1rem; color: var(--white); font-weight: 500; margin-bottom: 20px;">
                 Wearing something authentic brings a special kind of confidence.
             </p>
-            <p style="font-size: clamp(0.9rem, 2.5vw, 1.05rem); line-height: 1.8; color: rgba(255,255,255,0.6); font-weight: 300; max-width: 750px; margin: 0 auto;">
-                It is the unspoken language of the streets—a silent bond between those who respect the craft. Authenticity isn’t just about the stitching or the smell of premium leather; it’s the peace of mind that comes from knowing you are holding a piece of history. In a world of replicas, standing in the real thing alters your posture and sharpens your presence. At FrostLuxe, we protect that feeling. Every pair is a promise kept, ensuring your legacy is built on a foundation of pure, uncompromised heat.
+            <p style="font-size: 1rem; line-height: 1.8; opacity: 0.6;">
+                It is the unspoken language of the streets—a silent bond between those who respect the craft. Authenticity isn’t just about the stitching or the smell of premium leather; it’s the peace of mind.
             </p>
-            <div style="margin-top: 30px; height: 2px; width: 40px; background: var(--neon-blue); margin-left: auto; margin-right: auto; opacity: 0.5;"></div>
         </div>
     </section>
 
@@ -353,9 +335,9 @@
         <a href="products.html" class="view-all-btn">VIEW FULL COLLECTION</a>
     </section>
 
-    <section class="vip-club" style="text-align: center; padding: 80px 5%;">
+    <section class="vip-club">
         <h2 style="font-family: 'Syne'; font-size: 2rem; margin-bottom: 20px;">JOIN THE FROST-VIP CLUB</h2>
-        <a href="javascript:void(0)" class="join-btn" id="openModal" style="display: inline-block; padding: 15px 40px; background: var(--neon-blue); color: var(--dark); text-decoration: none; font-weight: 800; border-radius: 50px; transition: 0.4s;">SUBSCRIBE NOW</a>
+        <a href="javascript:void(0)" class="join-btn" id="openModal">SUBSCRIBE NOW</a>
     </section>
 
     <div id="vipModal" class="modal-overlay">
@@ -366,7 +348,7 @@
             <form id="vip-form">
                 <input type="email" placeholder="ENTER YOUR EMAIL" required 
                     style="width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--neon-blue); border-radius: 10px; color: white; margin-bottom: 15px; font-family: inherit;">
-                <button type="submit" class="submit-btn" style="width: 100%; background: var(--neon-blue); color: var(--dark); border: none; padding: 15px; border-radius: 10px; font-weight: 800; cursor: pointer; text-transform: uppercase;">Secure My Spot</button>
+                <button type="submit" class="submit-btn" style="width: 100%; background: var(--neon-blue); color: var(--dark); border: none; padding: 15px; border-radius: 10px; font-weight: 800; cursor: pointer;">Secure My Spot</button>
             </form>
             <div id="modal-success" style="display:none; margin-top: 15px; color: var(--neon-blue); font-weight: 800;">Welcome to the inner circle. ❄️</div>
         </div>
@@ -420,9 +402,8 @@
     <script>
         const menuBtn = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-menu');
-        menuBtn.onclick = () => navLinks.classList.toggle('active');
+        if(menuBtn) { menuBtn.onclick = () => navLinks.classList.toggle('active'); }
 
-        // Modal Logic
         const modal = document.getElementById('vipModal');
         const openBtn = document.getElementById('openModal');
         const closeBtn = document.querySelector('.close-modal');
